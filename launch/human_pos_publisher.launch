@@ -2,14 +2,17 @@
 <launch>
 	<arg name="topic" default="/velodyne_obstacles" />
 	<arg name="height" default="1.3" />
-	
+  <arg name="leafsize" default="0.03" />
+  <arg name="tolerance" default="0.3" />
+  <arg name="min_cluster_size" default="10" />
+  <arg name="max_cluster_size" default="2000" />
+
 	<node pkg="euclidean_cluster" type="test_euclidean_cluster" name="test_euclidean_cluster" >
 		<param name="topic_name_sub" value="$(arg topic)" />
-
-		<!-- <param name="leafsize" value="0.03" /> -->
-		<!-- <param name="tolerance" value="0.3" /> -->
-		<!-- <param name="min_cluster_size" value="10" /> -->
-		<!-- <param name="max_cluster_size" value="2000" /> -->
+		<param name="leafsize" value="$(arg leafsize)" />
+		<param name="tolerance" value="$(arg tolerance)" />
+		<param name="min_cluster_size" value="$(min_cluster_size)" />
+		<param name="max_cluster_size" value="$(max_cluster_size)" />
 	</node>
 
 	<param name="topic_name_sub" value="$(arg topic)" />
