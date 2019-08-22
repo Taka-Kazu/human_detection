@@ -1,5 +1,6 @@
 
 #include <ros/ros.h>
+#include <tf/tf.h>
 #include <message_filters/subscriber.h>
 #include <message_filters/synchronizer.h>
 #include <message_filters/sync_policies/exact_time.h>
@@ -98,12 +99,12 @@ void HumanPosPublisher::publish()
 
     geometry_msgs::PoseArray humans;
     humans.header = pc2.header;
-    for(const auto& pt : pc_pos.points){
+    for(const auto& pt : pc_pos->points){
         geometry_msgs::Pose human_pos;
-        human_pose.position.x = pt.x;
-        human_pose.position.y = pt.y;
-        human_pose.position.z = pt.z;
-        human_pose.orientation = tf::createQuaternionMsgFromYaw(0);
+        human_pos.position.x = pt.x;
+        human_pos.position.y = pt.y;
+        human_pos.position.z = pt.z;
+        human_pos.orientation = tf::createQuaternionMsgFromYaw(0);
         humans.poses.push_back(human_pos);
     }
     pose_array_pub.publish(humans);
