@@ -1,25 +1,25 @@
 <?xml version="1.0"?>
 <launch>
-	<arg name="topic" default="/velodyne_obstacles" />
-	<arg name="height" default="1.3" />
-  <arg name="leafsize" default="0.03" />
-  <arg name="tolerance" default="0.3" />
-  <arg name="min_cluster_size" default="10" />
-  <arg name="max_cluster_size" default="2000" />
+    <arg name="topic" default="/velodyne_obstacles" />
+    <arg name="height" default="1.3" />
+    <arg name="leafsize" default="0.03" />
+    <arg name="tolerance" default="0.3" />
+    <arg name="min_cluster_size" default="10" />
+    <arg name="max_cluster_size" default="2000" />
 
-	<node pkg="euclidean_cluster" type="test_euclidean_cluster" name="test_euclidean_cluster" >
-		<param name="topic_name_sub" value="$(arg topic)" />
-		<param name="leafsize" value="$(arg leafsize)" />
-		<param name="tolerance" value="$(arg tolerance)" />
-		<param name="min_cluster_size" value="$(min_cluster_size)" />
-		<param name="max_cluster_size" value="$(max_cluster_size)" />
-	</node>
+    <node pkg="euclidean_cluster" type="test_euclidean_cluster" name="test_euclidean_cluster" >
+        <param name="topic_name_sub" value="$(arg topic)" />
+        <param name="leafsize" value="$(arg leafsize)" />
+        <param name="tolerance" value="$(arg tolerance)" />
+        <param name="min_cluster_size" value="$(arg min_cluster_size)" />
+        <param name="max_cluster_size" value="$(arg max_cluster_size)" />
+    </node>
 
-	<param name="topic_name_sub" value="$(arg topic)" />
-	<param name="height_lidar" value="$(arg height)" />
+    <param name="topic_name_sub" value="$(arg topic)" />
+    <param name="height_lidar" value="$(arg height)" />
 
-	<node pkg="human_detection" type="test_splitter" name="test_splitter" output="screen" />
+    <node pkg="human_detection" type="test_splitter" name="test_splitter" output="screen" />
 
-	<node pkg="human_detection" type="pos_publisher" name="pos_publisher" output="screen" />
+    <node pkg="human_detection" type="pos_publisher" name="pos_publisher" output="screen" />
 
 </launch>
